@@ -1,2 +1,2 @@
 angular.module('questionBot', ['ngResource'])
-  .constant('API', 'http://jilco.herokuapp.com/api')
+  .constant('API', 'https://jilco.herokuapp.com/api')
