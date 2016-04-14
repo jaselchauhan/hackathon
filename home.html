@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="questionBot">
+
+<head>
+  <meta charset="utf-8">
+  <title>jilco app</title>
+  <!-- External JS Resources -->
+  <script src="/js/vendor/angular/angular.min.js"></script>
+  <script src="/js/vendor/angular-resource/angular-resource.min.js"></script>
+  <script src="js/app.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript" src="/js/models/question.js"></script>
+  <script type="text/javascript" src="/js/models/user.js"></script>
+  <script type="text/javascript" src="/js/controllers/questions.js"></script>
+  <script type="text/javascript" src="/js/controllers/users.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+</head>
+  <body ng-controller="UsersController as users">
+    <main class="container" ng-controller="QuestionsController as questions">
+      <h1>JILCO</h1>
+      <div class="row">
+        <div class="half">
+            <label ng-click="addQuestion=!addQuestion">Add Question</label>
+            <input type="text" name="name" ng-model="questions.question.question" ng-show="addQuestion">
+            <input type="submit" value="Add" placeholder="Question" ng-show="addQuestion">
+          </form>
+        </div>
+        <div class="half">
+          <form ng-submit="users.addUser()">
+            <label ng-click="addUser=!addUser">Add Name</label>
+            <input type="text" name="name" ng-model="users.user.name" ng-show="addUser">
+            <input type="submit" value="Add" ng-show="addUser">
+          </form>
+        </div>
+      </div>
+      <div class="questionBox">
+        <p>{{ questions.currentQuestion.question }}</p>
+      </div>
+
+      <ul ng-show="users.showAnswers">
+        <li class="users" ng-repeat="user in users.all">
+          <div class="status {{ user.clicked | lowercase }}">
+            <span> {{ user.name }}</span>
+          </div>
+        </li>
+      </ul>
+      <div class="buttonRow">
+        <button ng-click="questions.getQuestion()" >Next</button>
+        <button ng-click="users.resetUser()">Reset</button>
+        <button ng-click="users.showAnswersFunction()">Show</button>
+      </div>
+    </main>
+  </body>
+</html>
